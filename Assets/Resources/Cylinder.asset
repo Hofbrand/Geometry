@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971bb3f305b29cf49a48cad8cb4626a0, type: 3}
   m_Name: Cylinder
   m_EditorClassIdentifier: 
-  MinClicksCount: 0
-  MaxClicksCount: 4
+  minClicksCount: 1
+  maxClicksCount: 3
   color: {r: 0.0701762, g: 0.16031282, b: 0.7830189, a: 0}
-  ObjectType: Cylinder
+  objectType: Cylinder

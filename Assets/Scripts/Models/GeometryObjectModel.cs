@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Controllers;
 using UnityEngine;
 
-namespace Assets.Scripts.MVC
+namespace Assets.Scripts.Models
 {
-    public class GeometryObjectModel : MonoBehaviour, IModel
+    public class GeometryObjectModel : MonoBehaviour, IGeometryObjectModel
     {
         private Color CubeColor;
         private int clickCount = 0;
+
         private IController controller;
 
         private void Start()
@@ -21,10 +21,15 @@ namespace Assets.Scripts.MVC
             set
             {
                 clickCount = value;
-                controller.OnClick();
+                try
+                {
+                    controller.OnClick();
+                }
+                catch
+                {
+                    Debug.Log("Controller issue");
+                }
             }
         }
-
-        // Start is called before the first frame update
     }
 }

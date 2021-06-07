@@ -1,8 +1,6 @@
-﻿using Assets.Scripts.MVC;
+﻿using Assets.Scripts.Models;
 using Assets.Scripts.SO;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
@@ -12,42 +10,48 @@ namespace Assets.Scripts.Behaviours
     public class ChangeColor : BehaviourSO
     {
         private Color colorToChange;
+        private IDisposable _update;
 
-        public override void ChangeBehaviour(Transform objTransform, float delay)
+        public override void ChangeBehaviour(Transform objTransform)
         {
             _update = Observable.EveryUpdate()
-                .Where(_ => OnClick())
+                .Where(_ => IsClicked() && IsRayHitObject())
                 .Subscribe(x =>
                 {
-                    objTransform.gameObject.GetComponent<Renderer>().material.color = colorToChange;
+                    try
+                    {
+                        objTransform.gameObject.GetComponent<Renderer>().material.color = colorToChange;
+                    }
+                    catch (NullReferenceException)
+                    {
+                        Debug.Log("Can't find object");
+                    }
                 });
         }
 
-        private bool OnClick()
+        private bool IsClicked()
         {
-            if (Input.GetMouseButtonDown(0))
+            return Input.GetMouseButtonDown(0);
+        }
+
+        private bool IsRayHitObject()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100.0f))
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, 100.0f))
+                GeometryObjectModel model = hit.transform.GetComponent<GeometryObjectModel>();
+                model.ClickCount += 1;
+                foreach (var item in ResourcesStorage.ClickColorsData.ClicksData)
                 {
-                    GeometryObjectModel model = hit.transform.GetComponent<GeometryObjectModel>();
-                    model.ClickCount += 1;
-                    foreach (var item in ResourcesStorage.ClickColorsData.ClicksData)
+                    if (hit.transform.CompareTag(item.ObjectType) && model.ClickCount >= item.MinClicksCount && model.ClickCount <= item.MaxClicksCount)
                     {
-                        if (hit.transform.tag.Equals(item.ObjectType) && model.ClickCount >= item.MinClicksCount && model.ClickCount <= item.MaxClicksCount)
-                        {
-                            colorToChange = item.color;
-                            return true;
-                        }
+                        colorToChange = item.Color;
+                        return true;
                     }
                 }
-                return false;
             }
             return false;
         }
-
-        private IDisposable _update;
 
         private void OnDestroy()
         {

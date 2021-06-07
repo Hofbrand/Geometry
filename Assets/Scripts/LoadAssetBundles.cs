@@ -31,7 +31,7 @@ namespace Assets.Scripts
         {
             loadedAssetBundle = AssetBundle.LoadFromFile(bundlePath);
 
-            Debug.Log(loadedAssetBundle == null ? "failed" : "success");
+            Debug.Log(loadedAssetBundle == null ? "Load failed" : "Load success");
         }
 
         public GameObject InstantiateObjectFromBundle()
@@ -39,10 +39,16 @@ namespace Assets.Scripts
             GetPrefabNamesFromJson();
             SelectRandomPrefabName();
             var prefab = loadedAssetBundle.LoadAsset(assetName);
+
             if (prefab)
+            {
                 prefab = Instantiate(prefab);
+            }
             else
+            {
                 Debug.Log("Current bundle doesn't exist: " + assetName);
+            }
+
             return (GameObject)prefab;
         }
     }

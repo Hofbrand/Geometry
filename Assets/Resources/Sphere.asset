@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971bb3f305b29cf49a48cad8cb4626a0, type: 3}
   m_Name: Sphere
   m_EditorClassIdentifier: 
-  MinClicksCount: 1
-  MaxClicksCount: 8
+  minClicksCount: 5
+  maxClicksCount: 10
   color: {r: 0.8490566, g: 0.84105, b: 0.052064814, a: 0}
-  ObjectType: Sphere
+  objectType: Sphere

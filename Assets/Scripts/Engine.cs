@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -23,7 +21,14 @@ namespace Assets.Scripts
                 if (prefab)
                 {
                     objectCreated = true;
-                    prefab.GetComponent<Behaviour>().BehaviourON(ResourcesStorage.Data.ObservableTime);
+                    try
+                    {
+                        prefab.GetComponent<Behaviours.Behaviour>().SubscribeAllBehaviours();
+                    }
+                    catch
+                    {
+                        Debug.Log("Behaviours aren't exist");
+                    }
                 }
             }
         }

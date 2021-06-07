@@ -1,18 +1,20 @@
 ﻿using Assets.Scripts.SO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Behaviour : MonoBehaviour
+namespace Assets.Scripts.Behaviours
 {
-    [SerializeField]
-    private List<BehaviourSO> behaviours;
-
-    public void BehaviourON(int delay)
+    public class Behaviour : MonoBehaviour
     {
-        foreach (var item in behaviours)
+        [SerializeField]
+        private List<BehaviourSO> behaviours;
+
+        public void SubscribeAllBehaviours()
         {
-            item?.ChangeBehaviour(transform, delay);
+            foreach (var item in behaviours)
+            {
+                item?.ChangeBehaviour(transform);
+            }
         }
     }
 }

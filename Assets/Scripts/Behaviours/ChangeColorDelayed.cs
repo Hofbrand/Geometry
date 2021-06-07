@@ -10,15 +10,22 @@ namespace Assets.Scripts.Behaviours
     [CreateAssetMenu(fileName = "Change color delayed", menuName = "Behaviours/ Change color with delay")]
     public class ChangeColorDelayed : BehaviourSO
     {
-        public override void ChangeBehaviour(Transform objTransform, float delay)
+        private IDisposable _update;
+
+        public override void ChangeBehaviour(Transform objTransform)
         {
-            _update = Observable.Interval(TimeSpan.FromSeconds(delay)).Subscribe(x =>
+            _update = Observable.Interval(TimeSpan.FromSeconds(ResourcesStorage.Data.ObservableTime)).Subscribe(x =>
             {
-                objTransform.gameObject.GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
+                try
+                {
+                    objTransform.gameObject.GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
+                }
+                catch
+                {
+                    Debug.Log("Can't find object");
+                }
             });
         }
-
-        private IDisposable _update;
 
         private void OnDestroy()
         {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5e6c5a90ce0d24bbe7d0a45b5763f3, type: 3}
   m_Name: Geometry Object Data
   m_EditorClassIdentifier: 
-  ClicksData:
-  - {fileID: 11400000, guid: 7f39c24760d5a6b4eb3c13e656b243e3, type: 2}
+  clicksData:
   - {fileID: 11400000, guid: 661d0a10e1a4b7e459a03c38cda73c61, type: 2}
-  - {fileID: 11400000, guid: c1c7fd4a9c225454d84813481377f7e6, type: 2}
+  - {fileID: 11400000, guid: 7f39c24760d5a6b4eb3c13e656b243e3, type: 2}
   - {fileID: 11400000, guid: 9e868b0d46692fe46a2f316a4b61316c, type: 2}
+  - {fileID: 11400000, guid: c1c7fd4a9c225454d84813481377f7e6, type: 2}

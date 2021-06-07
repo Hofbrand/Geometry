@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971bb3f305b29cf49a48cad8cb4626a0, type: 3}
   m_Name: Capsule
   m_EditorClassIdentifier: 
-  MinClicksCount: 3
-  MaxClicksCount: 8
+  minClicksCount: 2
+  maxClicksCount: 5
   color: {r: 0.5283019, g: 0.027411893, b: 0.44512126, a: 0}
-  ObjectType: Capsule
+  objectType: Capsule

@@ -4,6 +4,6 @@ namespace Assets.Scripts.SO
 {
     public abstract class BehaviourSO : ScriptableObject
     {
-        public abstract void ChangeBehaviour(Transform objTransform, float delay);
+        public abstract void ChangeBehaviour(Transform objTransform);
     }
 }

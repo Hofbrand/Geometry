@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1389057605
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: geometryobject
+      Dependencies: {}
